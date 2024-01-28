@@ -1,5 +1,5 @@
 /*
- * InputFilter.c
+ * InputFilter
  *
  * Created: 3/3/2023 1:19:16 PM
  * Author : jonah
@@ -172,7 +172,9 @@ typedef struct trigGeneratorDevice{
 			 triggerGenerator->bTrig=FALSE;
 			 
 			 if(triggerGenerator->nIndexIn>=MAX_FIFO_SIZE) triggerGenerator->nIndexIn=0;
-		 }else if(*triggerGenerator->deviceState==DEVICE_GET && triggerGenerator->nCount==0)/*dont  pop from empty buffer*/ return;
+			
+		 }else if(*triggerGenerator->deviceState==DEVICE_GET && triggerGenerator->nCount==0)
+			/*don't POP an empty FIFO, we can set error flag just before we return*/ return;
 			 
 			 switch(*triggerGenerator->deviceState){
 				        case DEVICE_GET:
