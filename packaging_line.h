@@ -1,17 +1,18 @@
-/* maximum size of producct buffer*/
-  #define MAX_FIFO_SIZE 256
+#include <avr/io.h>
+#include <stdio.h>
+#include <stdint.h>
 
-/*Description: This Device is used to detects rising/falling edge of input signal
- *INPUT: CLK
- *OUTPUT: Q(of type bool)
+#define MAX_FIFO_SIZE 256   /* maximum size of producct buffer*/
+
+ 
+/*Description: A structure that hold members for edge detector device 
+ * used to detect rising/falling edge of input signal 
  */
 typedef struct edgeDetectorDevice{
-	BOOL CLK; //input CLOCK signal
-	BOOL previousIN; //previous CLOCK signal state
-	
-	BOOL Q; //output
-	
-	
+	BOOL CLK;        /*current state of input signal  */
+	BOOL previousIN; /* previous sate of input signal */	
+	BOOL Q;  /* evaluation results of input signal */
+
 	}edgeDetectorDevice;
 
  /*this function block is used to detect rising/falling edge of input signal
@@ -22,21 +23,20 @@ typedef struct edgeDetectorDevice{
   */
  void FB_edgeDetector(edgeDetectorDevice *edgeDetectorDeviceptr, BOOL detectFallingEdge);
 
-/* Description:Device to filter input signal
- *INPUT :bIN=signal to filter
- *OUTPUT :bOut=filtered signal
+/* Description: A structure that holds members of 
+ *Device used to filter input signal
  */
 typedef struct edgeFilterDevice{
 	BOOL bIn; //(*signal to filter*)
-	uint16_t nActual; //actual value to set computing
-	uint16_t nLength; //filter length
-	BOOL bReset;
-	BOOL bOut; /*output*/
+	uint16_t nActual; /* actual value used to set computing */
+	uint16_t nLength; /* filter length */
+	BOOL bReset; /* variable that allows to reset Device */
+	BOOL bOut; /* output - indicates the signal is valid */
 	/*internal variables*/
-	uint16_t nNextValid;
-	BOOL bIsFiltering;
+	uint16_t nNextValid; /* variable that indicate the earliest position/time to expect next valid signal */
+	BOOL bIsFiltering;   /* variable that indicates wether or not filtering is in progress */
 	
-	edgeDetectorDevice *edgeDetector;
+	edgeDetectorDevice *edgeDetector; 
 	
 	
 	}edgeFilterDevice;
