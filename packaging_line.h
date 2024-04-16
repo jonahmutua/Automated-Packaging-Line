@@ -4,8 +4,10 @@
 
 #define MAX_FIFO_SIZE 256   /* maximum size of producct buffer*/
 typedef uint8_t BOOL;
+BOOL TRUE=1;
+BOOL FALSE=0;
  
-/*Description: A structure that hold members for edge detector device 
+/*Description: A structure that hold members for edge detector device
  * used to detect rising/falling edge of input signal 
  */
 typedef struct edgeDetectorDevice{
