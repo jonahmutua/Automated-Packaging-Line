@@ -5,12 +5,7 @@
  * Author : jonah
  */ 
 
-#include <avr/io.h>
-#include <stdio.h>
-#include <stdint.h>
-
-#define MAX_FIFO_SIZE 256
-
+#include "packagin_line.h"
 
 /* 8----->PH5------->productSensor INPUT     6- PH3----output(trig printer)
  *13----->PB7------->edgeDetectedout 
@@ -33,9 +28,8 @@
  #define PULSEOUT PH7
  #define TRIGPRINTER PH3
  
-typedef uint8_t BOOL;
-BOOL TRUE=1;
-BOOL FALSE=0;
+
+
 
 /*product detector variables*/
 uint16_t productDetectorFilterValue=0; //current position/time 
