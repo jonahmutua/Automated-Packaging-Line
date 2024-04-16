@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 #define MAX_FIFO_SIZE 256   /* maximum size of producct buffer*/
-
+typedef uint8_t BOOL;
  
 /*Description: A structure that hold members for edge detector device 
  * used to detect rising/falling edge of input signal 
